@@ -30,3 +30,13 @@ app:
 # Server Port
 server:
   port: 8081 # Common practice: Identity service runs on its own dedicated port
+
+eureka:
+  instance:
+    # This tells Eureka to use the IP address instead of the hostname
+    prefer-ip-address: true
+    # Optional: ensure it binds to the loopback interface if developing locally
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
